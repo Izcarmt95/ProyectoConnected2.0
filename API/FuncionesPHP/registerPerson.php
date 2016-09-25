@@ -1,19 +1,22 @@
 <?php
 include("../Connection/connectionMySQL.php");
 
-function registerPerson($nombre, $apellidoUno, $apellidoDos, $cedula, 
-								$correo, $foto, $direccion, $id_distrito, $id_usuario)
-	{	
-		if($id_usuario == null){
-			$id_usuario = "null";
-		}
-		$connection = dbConnectMySQL();
+function registerPersonMySQL($name, $lastname, $birthdate , $gender, 
+								$country, $profession, $description, $email, $password)
+{	
+	$mysqli = dbConnectMySQL();
 
-		$insercion = 'call insertarPersonas("'.$nombre.'", "'.$apellidoUno.'", "'.$apellidoDos.'", "'.$cedula.'", "'.$correo.'","'.$foto.'","'.$direccion.'",'.$id_distrito.','.$id_usuario.')';
+   	$date= date ("Y-m-d H:i:s", strtotime($birthdate));
+   	$idAvatar = 'null';
+   	$mysqli->query("SET NAMES 'utf8'");
+	if(!$mysqli->query("call registerPerson('".$name."', '".$lastname."', '".$email."', '".$password."','".$date."' , '".$profession."','".$description."','".$gender."', ".$idAvatar.", ".$country.")")){
+		echo "Failed to register";
+ 	}
+ 	else{
+ 		echo "Registered";
 
-		mysql_query($insercion);
-		echo $insercion;
-
-	}
+ 	}
+ 	
+}
 
 ?>
