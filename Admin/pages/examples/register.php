@@ -85,6 +85,7 @@
   <div class="register-logo register-name">
     <p class="white"><b class="white">CONNEC</b>TED</p>
   </div>
+  
 
   <div class="register-box-body">
     <p class="login-box-msg">Register a new membership</p>

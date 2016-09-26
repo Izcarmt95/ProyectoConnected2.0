@@ -45,3 +45,31 @@ function registerPerson()
     }
     
 }
+
+function login()
+{   
+    
+    $email = $("#email").val();
+    $password = $("#password").val();    
+        $.ajax({
+
+            type:  "POST",
+            url:   "/ProyectoConnected2.0/Admin/php/Funciones/log.php",
+            dataType: "json",
+            data: { "email":$email, "password":$password,
+                    "tag":'log'},
+            
+                        
+            beforeSend: function(){
+                //Lo que se hace antes de enviar el formulario
+            },
+            success: function(response){
+               window.location.href = '../../index.php';
+
+            },
+            error:  function(xhr,err){ 
+                alert("readyState: "+ xhr.readyState +"\nstatus: "+ xhr.status+"\n \n responseText: "+ xhr.responseText);
+            }
+        });    
+}
+

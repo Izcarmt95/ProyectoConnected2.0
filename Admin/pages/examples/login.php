@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="../../bootstrap/js/register.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="" method="post">
+    <form onsubmit="return false">
       <div class="form-group has-feedback">
         <input id="email" name="email" type="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -52,7 +55,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button id="submit" type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button onclick="login()" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
