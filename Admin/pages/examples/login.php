@@ -58,7 +58,7 @@
       </div>
       <td></td>
       <a href="#">I forgot my password</a><br>
-      <a href="register.html">Register a new membership</a>
+      <a href="register.php">Register a new membership</a>
     </form>
     <!-- /.social-auth-links -->
 

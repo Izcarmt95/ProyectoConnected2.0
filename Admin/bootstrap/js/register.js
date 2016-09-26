@@ -11,6 +11,7 @@ function registerPerson()
     $password =$("#password").val();
     $passwordConfirm = $("#passwordconfirm").val();
 
+
     if($password != $passwordConfirm){
         alert("Contraseña incorrecta");
         
@@ -31,15 +32,14 @@ function registerPerson()
             beforeSend: function(){
                 //Lo que se hace antes de enviar el formulario
             },
-            success: function(response){
+            success: function(result){
                
-
+                    window.location.href = '../../pages/examples/login.php';
+                
             },
             error:  function(xhr,err){ 
-                alert("readyState: "+ xhr.readyState +"\nstatus: "+ xhr.status+"\n \n responseText: "+ xhr.responseText);
-                if(xhr.responseText == "Registered"){
-                    window.location.href = '../../pages/examples/login.html';
-                }
+                alert(xhr.responseText);
+                
             }
         });
     }

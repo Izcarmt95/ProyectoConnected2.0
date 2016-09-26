@@ -1,19 +1,25 @@
 <?php
-require('../Connection/connectionMySQ.php');
+require_once('/var/www/html/ProyectoConnected2.0/API//Connection/connectionMySQL.php');
 
-function registerPersonMySQL()
+function registerPersonMySQL($name,$lastname,$birthdate,$gender, $country,$profession,$description,$email, $password )
 {	
 	$mysqli = dbConnectMySQL();
 
    	$date= date ("Y-m-d H:i:s", strtotime($birthdate));
    	$idAvatar = 'null';
    	$mysqli->query("SET NAMES 'utf8'");
-	if(!$mysqli->query("call registerPerson('".$name."', '".$lastname."', '".$email."', '".$password."','".$date."' , '".$profession."','".$description."','".$gender."', ".$idAvatar.", ".$country.")")){
-		echo "Failed to register";
- 	}
- 	else{
- 		echo "Registered";
+   	$query = "call registerPerson('".$name."', '".$lastname."', '".$email."', '".$password."','".$date."', '".$profession."','".$description."','".$gender."', ".$idAvatar.", ".$country.")";
+   	$result = $mysqli->query($query);
 
+	if($result){
+		echo json_encode($result);
+
+		
+ 	}
+
+ 	else{
+
+ 		echo 'Failed Register';
  	}
  	
 }
