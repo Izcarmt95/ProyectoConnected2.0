@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  include ('../../php/Funciones/functions.php');
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -116,13 +119,11 @@
       <label style="margin-left:-285px">Country</label>
       <div class="form-group">
         <select id="country" name="country" class="form-control select2" style="width: 100%;">
-          <option selected="selected">Costa Rica</option>
-          <option>United States</option>
-          <option>Spain</option>
-          <option>France</option>
-          <option>Brazil</option>
-          <option>Canada</option>
-          <option>Italy</option>
+           <option value  = "" default disabled>Select Country</option>
+          <?php
+            getCountry();
+          ?>
+
         </select>
       </div>
       <div class="form-group has-feedback">

@@ -1,8 +1,7 @@
 <?php
-include("../Connection/connectionMySQL.php");
+require('../Connection/connectionMySQ.php');
 
-function registerPersonMySQL($name, $lastname, $birthdate , $gender, 
-								$country, $profession, $description, $email, $password)
+function registerPersonMySQL()
 {	
 	$mysqli = dbConnectMySQL();
 
@@ -18,5 +17,35 @@ function registerPersonMySQL($name, $lastname, $birthdate , $gender,
  	}
  	
 }
+
+
+function getCountryMySQL(){
+	$mysqli = dbConnectMySQL();
+
+	$result = $mysqli ->query('call getCountry()');
+
+	try {
+
+		while ($row = $result->fetch_array()) {
+	           	echo "<option value = '".$row['0']."'>".$row['1']."</option>";
+	     };
+    }
+    catch(PDOException $e){
+	    echo "<option value = '".""."'>"."ERROR_PHP_PRINCIPAL"."</option>";
+	            
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
