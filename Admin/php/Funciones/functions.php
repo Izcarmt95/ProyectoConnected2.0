@@ -1,9 +1,17 @@
 <?php
   include("../../../API/FuncionesPHP/registerPerson.php");
-
+  include("../../../API/FuncionesPHP/getFollow.php");
+  
   function getCountry(){
-      getCountryMySql();
+      getCountryDB();
   }
 
+  function getFollowers(){
+      getFollowerDB();
+ 
+  }
+  function getFollowings(){
+  	getFollowingsDB();
+  }
 	
 ?>

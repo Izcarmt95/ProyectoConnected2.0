@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+ <?php
+  	include ('../../php/Funciones/functions.php');
+  ?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -17,6 +20,8 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <link rel="shortcut icon" href="../../dist/img/connected.ico" />
+ 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,17 +35,19 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index.html" class="logo">
+    <a href="../../index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>C</b>TD</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>CONNEC</b>TED</span>
     </a>
     <?php
-      session_start();
+      @session_start();
       $fullName = $_SESSION['fullName'];
-      session_start();
       $country  = $_SESSION['country'];
+      $profession = $_SESSION['profession'];
+      $description = $_SESSION['description'];;
+      $birthdate = $_SESSION['birthdate'];
     ?>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -82,8 +89,7 @@
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $fullName ?> - Profession
-                  <small>Member Since //Database Info//</small>
+                  <?php echo $fullName ?> - <?php echo $profession?>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -92,7 +98,7 @@
                   <a href="profile.php" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="login.html" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="login.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -184,12 +190,28 @@
       <div class="row">
         <div class="col-md-3">
 
+     <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user2-160x160.jpg" alt="User profile picture">
+
+              <h3 class="profile-username text-center"><?php echo $fullName?> </h3>
+
+              <p class="text-muted text-center"><?php echo $profession ?> </p>
+                  <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Followers</b> <a class="pull-right"><?php getFollowers() ?> </a>
+                </li>
+                <li class="list-group-item">
+    		        <b>Following</b> <a class="pull-right"><?php getFollowings()?> </a>
+                </li>
+              </ul>
+            </div>
+		</div>
+
           <!-- Profile Image -->
          <?php
 
           //Dinamic code from profile here *********************************
-
-
 
 
           ?>
@@ -202,10 +224,10 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+              <strong><i class="fa  fa-gift margin-r-5"></i> Birthdate </strong>
 
               <p class="text-muted">
-                User Education from Database
+                <?php echo $birthdate?>
               </p>
 
               <hr>
@@ -213,12 +235,11 @@
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
               <p class="text-muted"><?php echo $country?></p>
-
               <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>User Description from Database</p>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Description</strong>
+              <p class="text-muted">
+              	<?php echo $description ?>
+              </p>
             </div>
             <!-- /.box-body -->
           </div>

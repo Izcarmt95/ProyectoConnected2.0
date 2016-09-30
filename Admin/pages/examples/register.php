@@ -66,6 +66,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <link rel="shortcut icon" href="../../dist/img/connected.ico" /> 
 
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="../../bootstrap/js/register.js"></script>
@@ -92,11 +93,11 @@
     <!--REGISTRATION FORM-->
     <form onsubmit="return false">
       <div class="form-group has-feedback">
-        <input name="name" id="name" type="text" class="form-control" placeholder="Name" >
+        <input name="name" id="name" type="text" class="form-control" placeholder="Name" required="">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input id="lastname" name="lastname" type="text" class="form-control" placeholder="Last Name" >
+        <input id="lastname" name="lastname" type="text" class="form-control" placeholder="Last Name" required="" >
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group">
@@ -106,7 +107,7 @@
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
-          <input type="text" class="form-control pull-right" name="datepicker" id="datepicker" >
+          <input type="text" class="form-control pull-right" name="datepicker" id="datepicker" required="">
           </div>
                 <!-- /.input group -->
       </div>
@@ -128,19 +129,19 @@
         </select>
       </div>
       <div class="form-group has-feedback">
-        <input id="profession" name="profession" type="text" class="form-control" placeholder="Profession" >
+        <input id="profession" name="profession" type="text" class="form-control" placeholder="Profession" required="" >
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input id="description" name="description" type="text" class="form-control" placeholder="Description" >
+        <input id="description" name="description" type="text" class="form-control" placeholder="Description" required="" >
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input id="email" name="email" type="email" class="form-control" placeholder="Email">
+        <input id="email" name="email" type="email" class="form-control" placeholder="Email" required="">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input id="password" name="password" type="password" class="form-control" placeholder="Password" >
+        <input id="password" name="password" type="password" class="form-control" placeholder="Password" required="">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -151,7 +152,7 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input id="agreeterms" name="agreeterms" type="checkbox" > I agree to the <a href="terms.html">terms</a>
+              <input id="agreeterms" name="agreeterms" type="checkbox" value="R" required=""> I agree to the <a href="terms.html">terms</a>
             </label>
           </div>
         </div>

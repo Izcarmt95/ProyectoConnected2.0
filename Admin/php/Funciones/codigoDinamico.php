@@ -1,137 +1,71 @@
 <?php
-
- include("../../php/connection/connection.php");
+      include("../../../API/FuncionesPHP/getPeople.php");
  /**
     Function for creation of code requiered in people.php
  */
 
-function userProfile($userName,$email){
-
-	echo  '<br><br><br>';
+function userProfile($userName,$profession,$country,$followers, $following, $idPerson){
+   echo '<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>';
+    echo  '<script src="../../bootstrap/js/follow.js"></script>';
+    echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>';
 	echo '<section class="content">';
-    echo               '<form method="post"
-                             action="../../php/Funciones/follow.php">';
-    echo  '<!-- Widget: user widget style 1 -->';
-    echo  '<div class="col-md-3">';
-    echo      '<div class="box box-widget widget-user">';
-    echo        '<!-- Add the bg color to the header using any of the bg-* classes -->';
-    echo        '<div class="widget-user-header bg-aqua-active">';
+    echo  '<form onsubmit="return false">';
+    echo   '<div class="row">';
+    echo    '<div class="col-md-4">';
+    echo     '<div class="box box-widget widget-user">';
+    echo       '<div class="widget-user-header bg-aqua-active">';
     echo          '<h3 class="widget-user-username">'.$userName.'</h3>';
-    echo          '<h5 class="widget-user-desc" >Profession</h5>';
+    echo          '<h5 class="widget-user-desc">'.$profession.'</h5>';
     echo        '</div>';
     echo        '<div class="widget-user-image">';
     echo          '<img class="img-circle" src="../../dist/img/user1-128x128.jpg" alt="User Avatar">';
     echo        '</div>';
     echo        '<div class="box-footer">';
     echo          '<div class="row">';
-    echo            '<!-- /.col -->';
     echo            '<div class="col-sm-4 border-right">';
     echo              '<div class="description-block">';
-    echo                 '<h5 class="description-header">#</h5>';
+    echo                '<h5 class="description-header">'.$country.'</h5>';
+    echo                '<span class="description-text">Country</span>';
+    echo              '</div>';
+    echo            '</div>';
+    echo            '<div class="col-sm-4 border-right">';
+    echo              '<div class="description-block">';
+    echo                '<h5 class="description-header">'.$followers.'</h5>';
     echo                '<span class="description-text">FOLLOWERS</span>';
     echo              '</div>';
-    echo              '<!-- /.description-block -->';
     echo            '</div>';
-    echo            '<!-- /.col -->';
-    echo          '</div>';
-    echo			'<div class="row">';
+    echo            '<div class="col-sm-4">';
+    echo              '<div class="description-block">';
+    echo                '<h5 class="description-header">'.$following.'</h5>';
+    echo                '<span class="description-text">FOLLOWINGS</span>';
+    echo              '</div>';
+    echo           '</div>';
+
+    echo         '</div>';
+    echo            '<div class="row">';
     echo            '<div class="col-xs-12">';
     
-    echo                '<button id="submit" name="btnFollow" value="'.$email.'" type="submit" class="btn      btn-primary   btn-block btn-flat">Follow</button>';
-    echo              '</form>';
-
-    echo            '</div>';
-    echo          '</div>';
+    echo     '<button id="btnFollow" name="btnFollow" onclick="followPerson()" value="'.$idPerson.'" class="btn btn-primary   btn-block btn-flat">Follow</button>';
+    echo           '</form>';
+    echo          '<!-- /.row -->';
     echo        '</div>';
     echo      '</div>';
+    echo      '<!-- /.widget-user -->';
     echo    '</div>';
+    echo    '</div>'; //row
     echo '</section>';
 };
 
 
-function getPerson(){
-    $db4 = dbConnect();
-     $db = dbConnect();
-     $result = $db->selectGremlin('g.V', '*:-1');
-     $i = 0;
-     $idSession = $_SESSION['idPerson'];
-     $Following = $db4->selectGremlin("g.v('".$idSession."').outE('Follows').inV.id",'*:-1');
-     foreach ($result as $key => $value) {
-        $db2 = dbConnect();
-        $db3 = dbConnect(); 
-        $db5 = dbConnect();
-        $idPerson = $db5->selectGremlin("g.V[".$i."].id");
-        if ($Following == []){$Following = ["empty"];}
-        if (!is_array($Following)){$Following = [$Following];}
-        
-            try{
-                if (!in_array($idPerson, $Following) && $idPerson != $idSession){
-                    $data = $db2->selectGremlin("g.V[".$i."].email",'*:-1');
-                    $data2 = $db3->selectGremlin('g.V("email", '.$data.').firstName', '*:-1');
-                  
-                    $data2 = str_replace('"','',$data2);
-                    $data = str_replace('"','',$data);
-                    userProfile($data2,$data);  
-                }
-            }
-            catch(Exception $e){
-     
-            }
-        
-        $i++;
-    }
-}
-
-
-function profileConectedUser(){
-    //Connection
-    $db = dbConnect();
-    $db2 = dbConnect();
-
-    //Global variables
-    $fullName = $_SESSION['fullName'];
-    $id = $_SESSION['idPerson'];
-   
-    //Querys
-    $following = $db->selectGremlin('g.v("'.$id.'").outE("Follows").inV.id','*:-1');
-
-    if (empty($following) ){
-        $following = 0;
-    }
-    else{
-        $following =  count($following);    
-    }
+function getPeople(){
+    //Gets array of persons //poss 7 is the idAvatar
+    $person = getPeopleDB();
+    $counter = 0;
+    foreach ($person as $row) {
+        userProfile($row[1].' '.$row[2],$row[3],$row[4], $row[6],$row[7],$row[0]);
     
-    $followers = $db2->selectGremlin('g.v("'.$id.'").inE("Follows").outV.id','*:-1');
-
-    if (empty($followers)){
-        $followers = 0;
-    }
-    else{
-        $followers =  count($followers);    
     }
 
-
-    //Print into profile.php
-    echo '<div class="box box-primary">';
-    echo        '<div class="box-body box-profile">';
-    echo          '<img class="profile-user-img img-responsive img-circle" src="../../dist/img/user2-160x160.jpg" alt="User profile picture">';
-
-    echo          '<h3 class="profile-username text-center">'.$fullName.'</h3>';
-
-    echo          '<p class="text-muted text-center">Profession</p>';
-    echo              '<ul class="list-group list-group-unbordered">';
-    echo            '<li class="list-group-item">';
-    echo              '<b>Followers</b> <a class="pull-right">'.$followers.'</a>';
-    echo            '</li>';
-    echo            '<li class="list-group-item">';
-    echo              '<b>Following</b> <a class="pull-right">'.$following.'</a>';
-    echo            '</li>';
-    echo          '</ul>';
-    echo        '</div>';
-    echo        '<!-- /.box-body -->';
-    echo      '</div>';
 }
-
-
+    
 ?>

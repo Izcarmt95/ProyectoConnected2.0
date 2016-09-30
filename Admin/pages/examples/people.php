@@ -17,6 +17,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <link rel="shortcut icon" href="../../dist/img/connected.ico" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,9 +39,11 @@
     </a>
     <?php
       // Empezamos la sesión /
-      session_start();
+      @session_start();
       // Creamos la sesión /
       $fullName = $_SESSION['fullName'];
+      $profession = $_SESSION['profession'];
+      include ('../../php/Funciones/codigoDinamico.php');
     ?>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -82,8 +85,8 @@
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $fullName?> - Profession
-                  <small>Member Since //Database Info//</small>
+                  <?php echo $fullName?> - <?php echo $profession ?>
+                 
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -92,7 +95,7 @@
                   <a href="profile.php" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="login.html" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="login.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -175,8 +178,10 @@
         People you may know
       </h1>
     </section>  
+    
     <?php
       // Get list of persons dinamic code
+    getPeople();
     ?>
   </div>
   <!-- /.content-wrapper -->

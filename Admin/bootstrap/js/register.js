@@ -1,5 +1,6 @@
 function registerPerson()
 { 	
+   
     $name = $("#name").val();
     $lastname = $("#lastname").val();
     $birthdate = $("#datepicker").val();
@@ -10,9 +11,21 @@ function registerPerson()
     $email = $("#email").val();
     $password =$("#password").val();
     $passwordConfirm = $("#passwordconfirm").val();
+    $agreeterms = $('input[name="agreeterms"]:checked').val();
 
+    
+    if($name == "" || $lastname == "" || $birthdate =="" || $profession == "" || $description == ""
+         || $email == "" || $password == "" || ($gender != "M" && $gender != "F")){
+        alert("Fill mandatory fields");
 
-    if($password != $passwordConfirm){
+    }
+    //Accept the agreeterms
+    else if($agreeterms != 'R'){
+        alert("Must accept the agreeterms");
+    }
+
+    //Match PassWord
+    else if($password != $passwordConfirm){
         alert("Contraseña incorrecta");
         
     }
@@ -68,7 +81,7 @@ function login()
 
             },
             error:  function(xhr,err){ 
-                alert("readyState: "+ xhr.readyState +"\nstatus: "+ xhr.status+"\n \n responseText: "+ xhr.responseText);
+                 alert(xhr.responseText);
             }
         });    
 }

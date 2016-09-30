@@ -30,7 +30,8 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="dist/img/connected.ico" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -45,6 +46,7 @@
     session_start();
     // Creamos la sesión /
     $fullName = $_SESSION['fullName'];
+    $profession = $_SESSION['profession'];
 
 ?>
   <header class="main-header">
@@ -95,8 +97,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  User - Profession
-                  <small>Member Since //Database Info//</small>
+                  <?php echo $fullName ?> - <?php echo $profession?>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -105,7 +106,7 @@
                   <a href="pages/examples/profile.php" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="pages/examples/login.html" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="pages/examples/login.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -148,7 +149,7 @@
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="index.php">
-            <i class="fa fa-home"></i> <span>News Feed</span>
+            <i class="fa fa-newspaper-o"></i> <span>News Feed</span>
           </a>
         </li>
         <li class="treeview">
@@ -197,6 +198,35 @@
         </div>
       </div>
     </section>
+    <div class="wrapperP">
+    <div class="containerP">
+    <div id="two-columns" class="grid-container" style="display:block;">
+      <ul class="rig columns-2">
+        <li>
+          <img src="images/pri_001.jpg" />
+          <h3>Image Title</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </li>
+        <li>
+          <img src="images/pri_002.jpg" />
+          <h3>Image Title</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </li>
+        <li>
+          <img src="images/pri_003.jpg" />
+          <h3>Image Title</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </li>
+        <li>
+          <img src="images/pri_004.jpg" />
+          <h3>Image Title</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
     <div class="col-md-9">
     <?php
       
@@ -353,5 +383,6 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
 </body>
 </html>
