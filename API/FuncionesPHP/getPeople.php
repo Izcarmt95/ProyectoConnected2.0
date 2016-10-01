@@ -117,6 +117,4 @@ function getCountryById($pIdCountry){
 	return $nDescriptionCountry;
 
 }
-getFollowingsUser("218");
-getFollowersUser("218");
 ?>

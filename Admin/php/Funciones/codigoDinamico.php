@@ -5,11 +5,8 @@
  */
 
 function userProfile($userName,$profession,$country,$followers, $following, $idPerson){
-   echo '<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>';
-    echo  '<script src="../../bootstrap/js/follow.js"></script>';
-    echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>';
 	echo '<section class="content">';
-    echo  '<form onsubmit="return false">';
+    echo  '<form method="post" action="../../php/Funciones/follow.php">';
     echo   '<div class="row">';
     echo    '<div class="col-md-4">';
     echo     '<div class="box box-widget widget-user">';
@@ -37,7 +34,7 @@ function userProfile($userName,$profession,$country,$followers, $following, $idP
     echo            '<div class="col-sm-4">';
     echo              '<div class="description-block">';
     echo                '<h5 class="description-header">'.$following.'</h5>';
-    echo                '<span class="description-text">FOLLOWINGS</span>';
+    echo                '<span class="description-text">FOLLOWING</span>';
     echo              '</div>';
     echo           '</div>';
 
@@ -45,7 +42,7 @@ function userProfile($userName,$profession,$country,$followers, $following, $idP
     echo            '<div class="row">';
     echo            '<div class="col-xs-12">';
     
-    echo     '<button id="btnFollow" name="btnFollow" onclick="followPerson()" value="'.$idPerson.'" class="btn btn-primary   btn-block btn-flat">Follow</button>';
+    echo     '<button id="btnFollow" name="btnFollow" value="'.$idPerson.'" class="btn btn-primary   btn-block btn-flat">Follow</button>';
     echo           '</form>';
     echo          '<!-- /.row -->';
     echo        '</div>';
