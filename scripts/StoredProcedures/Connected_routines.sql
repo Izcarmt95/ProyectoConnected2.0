@@ -3,7 +3,6 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `createChat`(pIdPerson1 int(11), pIdPerson2 int(11))
 BEGIN
 	insert into Chat(idChat, idPerson1, idPerson2)
-    
     values(null, pIdPerson1, pIdPerson2);
     commit;
 END ;;

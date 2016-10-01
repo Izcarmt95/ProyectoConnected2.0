@@ -1,7 +1,9 @@
 <?php
 
 // Required databases connections
-require ('/var/www/html/ProyectoConnected2.0/API//Connection/ConnectionNeo4j.php');
+require ('/var/www/html/ProyectoConnected2.0/API//Connection/Neo4j/ConnectionNeo4j.php');
+
+require ('/var/www/html/ProyectoConnected2.0/API//Connection/Mongo/ConnectionMongo.php');
 
 require ('/var/www/html/ProyectoConnected2.0/API//Connection/connectionMySQL.php');
 

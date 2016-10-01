@@ -1,5 +1,5 @@
 <?php
-require_once ('/var/www/html/ProyectoConnected2.0/API//Connection/ConnectionNeo4j.php');
+require_once ('/var/www/html/ProyectoConnected2.0/API//Connection/Neo4j/ConnectionNeo4j.php');
 
 require_once('/var/www/html/ProyectoConnected2.0/API//Connection/connectionMySQL.php');
 
