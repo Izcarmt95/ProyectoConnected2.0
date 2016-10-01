@@ -1,6 +1,6 @@
 <?php
       include("../../../API/FuncionesPHP/getPeople.php");
- /**
+ /*
     Function for creation of code requiered in people.php
  */
 
