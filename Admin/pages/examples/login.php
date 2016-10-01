@@ -28,7 +28,7 @@
   <![endif]-->
 </head>
 <body class="hold-transition login-page body-bg">
-<div class="login-box top-margin">
+<div class="login-box">
   <div class="login-logo login-name">
     <p class="white"><b class="white">CONNEC</b>TED</p>
   </div>

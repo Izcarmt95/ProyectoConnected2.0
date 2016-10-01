@@ -13,7 +13,7 @@ function getFollowerDB(){
 		$record = $result->records();
 		echo count($record[0]->value('ids'));
 	}
-	catch(Exeption $e){
+	catch(Exception $e){
 		echo "Error in the query";
 	}
 }
@@ -29,7 +29,7 @@ function getFollowingsDB(){
 		$record = $result->records();
 		echo count($record[0]->value('ids'));
 	}
-	catch(Exeption $e){
+	catch(Exception $e){
 		echo "Error in the query";
 	}
 }

@@ -325,7 +325,7 @@
             e.target.setCustomValidity("");
             if (!e.target.validity.valid) {
                 if (e.target.name == "agreeterms") {
-                    e.target.setCustomValidity("Debe aceptar los términos y condiciones");
+                    e.target.setCustomValidity("Must agree to the terms of use.");
                 }
             }
         };
