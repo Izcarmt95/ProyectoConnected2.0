@@ -1,11 +1,18 @@
 <?php
- include("../connection/connection.php");
-$post = $_POST['post'];
-session_start();
-$idPerson = $_SESSION['idPerson'];
+	include("../../../API/FuncionesPHP/createPost.php");
+	$post = $_POST['post'];
+	$media = $_POST['media'];
+	if($media != ""){
+		@session_start();
+		$idPerson = $_SESSION['idPerson'];
+		$mensaje = $media;
+		return 1;
+	}
+	else{
+		createPostText($post);
+		return -1;
 
-$db = dbConnect();
-$data = $db->query('select createPost("'.$post.'",'.$idPerson.')');
-print("<script>window.location.replace('../../index.php');</script>");
+	}
+	
 ?>
 

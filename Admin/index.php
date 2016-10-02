@@ -32,6 +32,9 @@
 
   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="dist/img/connected.ico" />
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="bootstrap/js/post.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -47,6 +50,7 @@
     // Creamos la sesión /
     $fullName = $_SESSION['fullName'];
     $profession = $_SESSION['profession'];
+    require_once("php/Funciones/post.php");
 
 ?>
   <header class="main-header">
@@ -187,10 +191,12 @@
       <div class="row">
         <div class="col-md-6">
           <div class="box box-primary">
-              <form method="post" action="">
+              <form onsubmit="return false">
                 <textarea class="textarea" name="post" id="post" placeholder="What's on your mind?" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 <div class="box-footer">
-                <button type="submit" class="btn btn-primary pull-right">Post</button>
+                  <input type="file" id="media">
+                  <p class="help-block">Insert media</p>
+                <button onclick="createPost()" class="btn btn-primary pull-right">Post</button>
               </div>
               </form>
             </div>
@@ -198,6 +204,13 @@
         </div>
       </div>
     </section>
+     <div class="col-md-6">
+    <?php
+      getPost();
+
+    ?>
+    </div>
+
     <div class="wrapperP">
     <div class="containerP">
     <div id="two-columns" class="grid-container" style="display:block;">
@@ -207,34 +220,12 @@
           <h3>Image Title</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </li>
-        <li>
-          <img src="images/pri_002.jpg" />
-          <h3>Image Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </li>
-        <li>
-          <img src="images/pri_003.jpg" />
-          <h3>Image Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </li>
-        <li>
-          <img src="images/pri_004.jpg" />
-          <h3>Image Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </li>
       </ul>
     </div>
   </div>
   </div>
 
-    <div class="col-md-9">
-    <?php
-      
-    // POST HERE
-
-
-    ?>
-    </div>
+   
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
