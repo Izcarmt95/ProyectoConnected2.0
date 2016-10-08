@@ -46,7 +46,7 @@
 <div class="wrapper">
 <?php
     // Empezamos la sesión /
-    session_start();
+    @session_start();
     // Creamos la sesión /
     $fullName = $_SESSION['fullName'];
     $profession = $_SESSION['profession'];
@@ -189,12 +189,12 @@
     <section class="content">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
           <div class="box box-primary">
               <form onsubmit="return false">
                 <textarea class="textarea" name="post" id="post" placeholder="What's on your mind?" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 <div class="box-footer">
-                  <input type="file" id="media">
+                  <input type="file" id="media" name="media">
                   <p class="help-block">Insert media</p>
                 <button onclick="createPost()" class="btn btn-primary pull-right">Post</button>
               </div>
@@ -204,7 +204,7 @@
         </div>
       </div>
     </section>
-     <div class="col-md-6">
+     <div class="col-md-7">
     <?php
       getPost();
 
@@ -216,9 +216,9 @@
     <div id="two-columns" class="grid-container" style="display:block;">
       <ul class="rig columns-2">
         <li>
-          <img src="images/pri_001.jpg" />
-          <h3>Image Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <img src="" />
+          <h3></h3>
+          <p></p>
         </li>
       </ul>
     </div>

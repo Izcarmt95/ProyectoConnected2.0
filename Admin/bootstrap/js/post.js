@@ -6,7 +6,8 @@ function createPost()
         alert("Please write something or attach photo to post");
 
     }
-    else{
+    else if($post != '' && $media == ''){
+        alert();
         $.ajax({
             type:  "POST",
             url:   "/ProyectoConnected2.0/Admin/php/Funciones/createPost.php",
@@ -26,6 +27,27 @@ function createPost()
             }
         }); 
 
-    }   
+    } 
+    else{
+        var data = new FormData();
+        data.append('media', $('#media')[0].files[0]);
+        data.append('post',$('#post').val());
+        $.ajax({
+            url: "/ProyectoConnected2.0/Admin/php/Funciones/upload.php",
+            type: "POST",
+            data:  data,
+            dataType: "json",
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data)
+            {
+                window.location.href = 'index.php';
+            },
+            error:  function(xhr,err){ 
+                 alert(xhr.responseText);
+            }           
+       });
+    }  
 }
 

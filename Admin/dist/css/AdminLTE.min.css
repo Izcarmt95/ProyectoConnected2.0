@@ -86,7 +86,7 @@
 	padding: 0px 0;
 }
 .containerP {
-	width: 500px;
+	width: 400px;
 	margin: 0 auto;
 }
 ul.grid-nav {
@@ -156,14 +156,14 @@ ul.rig.columns-2 li {
 	width: 100%; /* this value + 2.5 should = 50% */
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
 	.containerP {
 		width: auto;
-		padding: 0 10px;
+		padding: 0 20px;
 	}
 }
 
-@media (max-width: 480px) {
+@media (max-width: 200px) {
 	ul.grid-nav li {
 		display: block;
 		margin: 0 0 5px;

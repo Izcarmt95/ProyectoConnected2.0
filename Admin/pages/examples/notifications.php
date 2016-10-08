@@ -48,7 +48,7 @@
       </a>
       <?php
         // Empezamos la sesión /
-        session_start();
+        @session_start();
         // Creamos la sesión /
         $fullName = $_SESSION['fullName'];
       ?>

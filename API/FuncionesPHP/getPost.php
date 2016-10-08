@@ -3,6 +3,7 @@ require_once ('/var/www/html/ProyectoConnected2.0/API//Connection/Neo4j/Connecti
 
 require_once('/var/www/html/ProyectoConnected2.0/API//Connection/connectionMySQL.php');
 
+require 'vendor/autoload.php';
 //get people for follow
 function getPostDB()
 {	
@@ -22,10 +23,12 @@ function getPostDB()
 	    	//set properties into array
         	while ($row2 =  $postFromDB->fetch_array()){
             	$postAux['idPost'] = $row2['idPost'];
-            	$postAux['idMedia'] = $row2['idMedia'];
             	$postAux['text'] = $row2['text'];
             	$postAux['date'] = $row2['date']; 
             	$idPersonPostU = $row2['idPerson'];
+
+            	$idMedia = intval($row2['idMedia']);
+            	$postAux['media'] = getStringMedia($idMedia);
 
             	//Gets Person name and lastname
             	$mysqli3 = dbConnectMySQL();
@@ -73,6 +76,32 @@ function getFollowingsDB(){
 	}
 }
 
-//getPostDB();
+function getStringMedia($idMedia){
+	if($idMedia !=''){
+		//Mongo connection
+		$imgManager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+		$images = new MongoDB\GridFS\Bucket($imgManager, "test");
+		$vidManager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+		$videos = new MongoDB\GridFS\Bucket($vidManager, "test");
+
+
+		$result = "/var/www/html/ProyectoConnected2.0/API/Result/result".$idMedia.".txt";
+		$wstream = fopen($result, "w+");
+
+		$videos -> downloadToStream($idMedia, $wstream);
+
+		$handle = fopen($result, "rb");
+		$contents = fread($handle, filesize($result));
+		$string = chunk_split(base64_encode($contents), 64, "\n");
+
+
+		fclose($handle);
+		return $string;	
+	}
+	else 
+	{
+		return $idMedia ;
+	}
+}
 ?>
    
