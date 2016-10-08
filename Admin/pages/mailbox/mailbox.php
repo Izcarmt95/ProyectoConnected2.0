@@ -29,6 +29,68 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+<style type="text/css">
+  .chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 250px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -49,9 +111,10 @@
 
       <?php
         // Empezamos la sesión /
-        session_start();
+        @session_start();
         // Creamos la sesión /
         $fullName = $_SESSION['fullName'];
+        include ('../../php/Funciones/getAllPerson.php');
       ?>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -186,107 +249,41 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
+   <div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="accordion">
+                    <span></span> Chat
+                </div>
+         
+                <div class="panel-body" id = "chat1" name = "chat1">
+                    <ul class="chat" id = 'chat' name = 'chat' >
 
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Folders</h3>
 
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="message" name = 'message' type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat" name = 'btn-chat' onclick="sendMessage()">Send</button>
+                        </span>
+                    </div>
+                </div>
             </div>
-            <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-                  <span class="label label-primary pull-right"># of Unread Messages</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
-          <div class="box box-solid">
-            
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Inbox</h3>
-
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                </div>
-              </div>
-              <!-- /.box-tools -->
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+             <?php
+                // Get list of persons dinamic code
+              getAllPeople();
+              ?>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  # of Messages
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
-              <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
-                  <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Message Sender</a></td>
-                    <td class="mailbox-subject"><b>Message Subject</b> <td>Message Description
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">Time of Message</td>
-                  </tr>
-                  
-                  </tbody>
-                </table>
-                <!-- /.table -->
-              </div>
-              <!-- /.mail-box-messages -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  # of Messages
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
-            </div>
-          </div>
-          <!-- /. box -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
+
+    </div>
+</div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -402,6 +399,7 @@
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../bootstrap/js/chat.js"></script>
 <!-- Slimscroll -->
 <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
