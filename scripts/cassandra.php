@@ -4,11 +4,11 @@ $session   = $cluster->connect();        // create session, optionally scoped to
 
 
 
-/*$session->execute(new Cassandra\SimpleStatement(" CREATE KEYSPACE Connected WITH replication = {'class': 'SimpleStrategy','replication_factor' : 1}"));*/
+$session->execute(new Cassandra\SimpleStatement(" CREATE KEYSPACE Connected WITH replication = {'class': 'SimpleStrategy','replication_factor' : 1}"));
 
     
 
-/*$session->execute(new Cassandra\SimpleStatement(" CREATE TABLE Connected.Message ( idChat int, idPerson int, message text,date timestamp,PRIMARY KEY (idChat, date, idPerson));"));*/
+$session->execute(new Cassandra\SimpleStatement(" CREATE TABLE Connected.Message ( idChat int, idPerson int, message text,date timestamp,PRIMARY KEY (idChat, date, idPerson));"));
 
 /*$session->execute(new Cassandra\SimpleStatement(" drop TABLE Connected.Message ;"));*/
 

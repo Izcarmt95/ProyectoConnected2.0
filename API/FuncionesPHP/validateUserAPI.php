@@ -85,13 +85,15 @@ function validateUserPass($pEmail,$pPassword)
 				
 				else{
 					// Sessiion information
-					session_start();
+					@session_destroy();
+					@session_start();
 					$_SESSION['fullName'] = $nName .' '.$nLastname;
 					$_SESSION['idPerson'] = $nIdPerson;
 					$_SESSION['description'] = $nDescription;
 					$_SESSION['profession'] = $nProfession;
 					$_SESSION['country'] = $countrys;
 					$_SESSION['birthdate'] = $nBirthdate;
+					$_SESSION['idChat'] = null;
 					// respose 
 					echo json_encode($password);
 
