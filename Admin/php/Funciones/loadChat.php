@@ -6,6 +6,7 @@
 	$idChat = $_SESSION['idChat'];
 	$idPerson = $_SESSION['idPerson'];
 	$fullName = $_SESSION['fullName'];
+	
 	if (is_null($idChat)){
 		$result = ' <li class="left clearfix"><span class="chat-img pull-left"> '.
 					 '     <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> '.
@@ -24,7 +25,6 @@
 					 '      ';
 		echo json_encode($result);
 
-
 	}
 	else{
 
@@ -32,6 +32,7 @@
 		$idPersonChat =$_SESSION['idPersonChat'];
 		$fullName2 = getPerson($idPersonChat);
 		$chat = getMessage($idChat);
+		$result = "";
 
 
 
@@ -45,9 +46,6 @@
 		}
 		echo json_encode($result);
 
-
-	
-		
 
 	}
 
