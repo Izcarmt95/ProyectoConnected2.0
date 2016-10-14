@@ -117,4 +117,73 @@ function getCountryById($pIdCountry){
 	return $nDescriptionCountry;
 
 }
+
+function getAllPeopleDB()
+{
+	$idPerson = $_SESSION["idPerson"];
+	$mysqli = dbConnectMySQL();
+
+	$person = []; // array of person's properties
+	$idPersons = $mysqli->query("call getIdPerson()");
+
+
+	while ($row = $idPersons->fetch_array()) {
+		//NO FOLLOW  and not be the same id of session
+	    if($row['0'] != $idPerson){
+	    	$mysqli2= dbConnectMySQL();
+	    	$personFromDB = $mysqli2->query("call getPerson(".$row['0'].")");
+	    	$personAux = [];
+
+	    	//set properties into array
+        	while ($row2 =  $personFromDB->fetch_array()){
+            	$nIdPerson = $row2['idPerson'];
+            	array_push($personAux,$nIdPerson);
+
+            	$nFirstName = $row2['firstName'];
+            	array_push($personAux,$nFirstName);
+
+            	$nLastName = $row2['lastName'];
+            	array_push($personAux,$nLastName);
+
+            	$nProfession = $row2['profession'];
+            	array_push($personAux,$nProfession);
+
+            	$nCountry = $row2['idCountry'];
+            	$nCountry = getCountryById($nCountry);
+            	array_push($personAux,$nCountry);
+
+            	$nIdAvatar = $row2['idAvatar'];
+            	array_push($personAux,$nIdAvatar);
+
+            	//Followers
+            	$followers = getFollowersUser($nIdPerson);
+            	array_push($personAux,$followers);
+
+            	//Followings
+            	$followings = getFollowingsUser($nIdPerson);
+            	array_push($personAux,$followings);
+
+        	}
+        	array_push($person, $personAux);
+	    }
+	}
+	return $person;
+}
+
+function getPerson($idPerson)
+	{
+		$mysqli = dbConnectMySQL();
+		$person = $mysqli ->query('call getPerson('.$idPerson.')');
+		while ($row =  $person->fetch_array()){
+			$firstName = $row['firstName'];
+			$lastName = $row['lastName'];
+
+		}
+
+		$fullName = $firstName." ".$lastName;
+		return $fullName;
+
+	}
+
+
 ?>
